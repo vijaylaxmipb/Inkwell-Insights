@@ -15,6 +15,8 @@ import os
 import dj_database_url
 if os.path.isfile('env.py'):
     import env
+    from .env import *
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,10 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-20mm5o)&%6776$g+va31!10is942t35^99f^(&9cn(r-bkqk&b'
 SECRET_KEY = os.environ.get("SECRET_KEY")
+# Retrieve SECRET_KEY from the environment
+SECRET_KEY = os.getenv('SECRET_KEY')
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '8000-vijaylaxmip-inkwellinsi-nxx7sagboaw.ws.codeinstitute-ide.net',
@@ -88,10 +92,19 @@ WSGI_APPLICATION = 'inkwellinsights.wsgi.application'
 #}
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+   'default': dj_database_url.parse(
+       os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3")
+   )
 }
 
+#DATABASES = { 
+#   'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+#    }
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.codeinstitute-ide.net/",
+    "https://*.herokuapp.com"
+]
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
