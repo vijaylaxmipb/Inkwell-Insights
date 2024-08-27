@@ -35,7 +35,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '8000-vijaylaxmip-inkwellinsi-nxx7sagboaw.ws.codeinstitute-ide.net',
-    ".herokuapp.com"]
+    ".herokuapp.com",
+    'inkwell-insight.herokuapp.com',
+]
 
 
 # Application definition
