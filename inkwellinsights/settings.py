@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '8000-vijaylaxmip-inkwellinsi-nxx7sagboaw.ws.codeinstitute-ide.net',
@@ -67,7 +67,9 @@ ROOT_URLCONF = 'inkwellinsights.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
