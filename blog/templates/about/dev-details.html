@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Inkwell-Insights | About {% endblock %}
+
+{% block content %}
+<div class="container-fluid my-5">
+    {% for devProfile in dev_profiles %}
+        <div class="row mb-5">
+            <!-- Left Column -->
+            <div class="col-md-6 mb-4">
+                <!-- Developer Profile Card -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3>{{ devProfile.user.first_name }} {{ devProfile.user.last_name }}</h3>
+                        <hr>
+                        <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-map-marker" aria-hidden="true"></i>Kerry, Ireland</li>
+                            <li><i class="fa-li fa fa-comments-o" aria-hidden="true"></i>{{ devProfile.languages }}</li>
+                            <li><i class="fa-li fa fa-code" aria-hidden="true"></i>{{ devProfile.skills }}</li>
+                        </ul>
+                        <p>{{ devProfile.about }}</p>
+                    </div>
+                    <div class="card-footer center-align d-flex justify-content-around">
+                        {% if devProfile.github_portfolio_link %}
+                            <a href="{{ devProfile.github_portfolio_link }}" target="_blank" aria-label="GitHub">
+                                <i class="fa fa-github icon" aria-hidden="true"></i>
+                            </a>
+                        {% endif %}
+                        {% if devProfile.linkedin_profile_link %}
+                            <a href="{{ devProfile.linkedin_profile_link }}" target="_blank" aria-label="LinkedIn">
+                                <i class="fa fa-linkedin-square icon" aria-hidden="true"></i>
+                            </a>
+                        {% endif %}
+                        {% if devProfile.resume_download_link %}
+                            <a href="{{ devProfile.resume_download_link }}" download target="_blank" aria-label="CV">
+                                <i class="fa fa-file-download icon" aria-hidden="true"></i>
+                            </a>
+                        {% endif %}
+                        <a href="mailto:indre.vilickaite@gmail.com" aria-label="Email the developer">
+                            <i class="fa fa-envelope icon" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Column -->
+            <div class="col-md-6 mb-4">
+                <div class="row">
+                    <!-- Code Card -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="{% static 'images/code.webp' %}" class="card-img-top" alt="Code">
+                            </div>
+                            <div class="card-body">
+                                <span class="card-title">Code</span>
+                                <hr>
+                                <p>My aim is to write code that is elegant, maintainable, and intuitive to follow.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Design Card -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="{% static 'images/design.webp' %}" class="card-img-top" alt="Design">
+                            </div>
+                            <div class="card-body">
+                                <span class="card-title">Design</span>
+                                <hr>
+                                <p>My enthusiasm for clear and clean design is evident in every project I undertake.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Education Card -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <span class="card-title">Education</span>
+                            <hr>
+                            <p>{{ devProfile.education }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

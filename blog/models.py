@@ -39,4 +39,18 @@ class Meta:
         ordering = ["created_on"]
 
 
+class Contact(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    message = models.TextField()
+    
+    def __str__(self):
+        return self.name
 
+class DevProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(blank=True)
+    profile_picture = models.ImageField(upload_to='profiles/', blank=True, null=True)
+    
+    def __str__(self):
+        return self.user.username

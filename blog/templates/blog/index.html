@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Inkwell Insights {% endblock %}
+
+{% block content %}
+<!-- Include hero section at the top of the page -->
+{% include 'components/hero.html' %}
+<hr class="hr hr-blurry">
+<!-- Main content section -->
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <!-- Column for displaying latest insights -->
+    <div class="col-md-10 mb-5">
+      <h1 class="text-center my-3">Latest</h1>
+      <div class="row justify-content-center">
+        {% for post in latest_insights %}
+        <div class="col-md-6 mb-4">
+          {% include 'components/list-cards.html' %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!-- Column for displaying most popular insights -->
+    <div class="col-sm-8 col-xl-2">
+      <h1 class="text-center my-3">Most Popular</h1>
+      <div class="row justify-content-center">
+        {% for post in most_popular %}
+        <div class="col-sm-12 mb-4">
+          <div class="card p-4">
+            <p><a href="{% url 'insight-details' post.slug %}">{{ post.title }}</a></p>
+            <a class="fw-bold" href="{% url 'profile' post.author.username %}"> by {{ post.author }}</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <!-- Link to more insights section -->
+  <div class="text-center mb-5">
+    <a href="{% url 'insights' %}" class="btn rounded mb-0 text-nowrap button-style">More Insights</a>
+  </div>
+</div>
+{% endblock %}
