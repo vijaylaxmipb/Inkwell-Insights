@@ -9,7 +9,7 @@ from .forms import ContactForm
 
 class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1)
-    template_name = "blog/post.html"
+    template_name = "blog/index.html"
 
 # Function-based view
 # def my_blog(request):
