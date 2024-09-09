@@ -1,12 +1,14 @@
-from . import views
-from django.urls import path
-from .views import DevProfileView, ContactFormView
 
-# from .views import my_blog
+from django.urls import path
+from .views import PostList  # Assuming you are using the PostList class view
+from . import views
 
 urlpatterns = [
-    path('', views.PostList.as_view(), name='home'),
-    path('about/', DevProfileView.as_view(), name='about'),
-    # path('my_blog/', my_blog, name='my_blog'),
+   path('', PostList.as_view(), name='home'),  # Use the class-based view
 ]
+
+
+
+
+
 

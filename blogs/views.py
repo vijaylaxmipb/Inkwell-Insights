@@ -11,10 +11,11 @@ class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1)
     template_name = "blog/index.html"
 
-# Function-based view
-# def my_blog(request):
-#     posts = Post.objects.all()
-#     return render(request, 'post.html', {'posts': posts})
+#Function-based view
+def my_blog(request):
+    posts = Post.objects.all()
+    return render(request, 'post.html', {'posts': posts})
+
 
 class DevProfileView(TemplateView):
     template_name = "dev_profile.html"
@@ -27,4 +28,3 @@ class ContactFormView(FormView):
     def form_valid(self, form):
         # Handle the form submission
         return super().form_valid(form)
-
